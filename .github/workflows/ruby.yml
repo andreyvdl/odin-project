@@ -1,0 +1,29 @@
+name: Ruby
+
+on:
+  push:
+    branches:
+      - main
+
+jobs:
+  pj0_test:
+    runs-on: ubuntu-latest
+
+    steps:
+    - uses: actions/checkout@v2
+
+    - name: Set up Ruby
+      uses: ruby/setup-ruby@v1
+      with:
+        ruby-version: '3.3.1'
+
+    - name: Install dependencies
+      run: |
+        cd project0
+        gem install bundler
+        bundle install
+
+    - name: Run tests
+      run: |
+        cd project0
+        ruby caesar_cipher.rb
